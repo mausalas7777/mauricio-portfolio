@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio profesional de Mauricio — Video Editor.">
+<title>MAURICIO — VIDEO EDITOR</title>
+<style>
+:root{--bg:#080808;--panel:#111;--text:#f5f5f5;--muted:#9b9b9b;--line:#252525;--accent:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}
+.nav{position:fixed;z-index:50;top:18px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 32px));display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border:1px solid #ffffff14;background:#090909c9;backdrop-filter:blur(18px);border-radius:999px}
+.logo{font-weight:900;letter-spacing:.12em}.links{display:flex;gap:24px;font-size:13px;color:#bbb}.links a:hover{color:#fff}.menu{display:none;background:none;border:0;color:#fff;font-size:24px}
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 6vw 80px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:700px;height:700px;background:radial-gradient(circle,#fff12%,transparent 65%);filter:blur(30px);opacity:.22;right:-220px;top:-250px}
+.hero-grid{width:min(1250px,100%);display:grid;grid-template-columns:1.1fr .9fr;gap:7vw;align-items:center}
+.eyebrow{font-size:12px;letter-spacing:.25em;color:#aaa;text-transform:uppercase}.hero h1{font-size:clamp(70px,12vw,170px);line-height:.78;margin:22px 0;font-weight:950;letter-spacing:-.07em}.hero h2{font-size:clamp(22px,3vw,42px);margin:0 0 22px;letter-spacing:-.03em}.hero p{max-width:570px;color:#aaa;font-size:18px;line-height:1.6}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{padding:14px 20px;border-radius:999px;border:1px solid #333;background:#fff;color:#000;font-weight:800;cursor:pointer;transition:.25s}.btn.secondary{background:transparent;color:#fff}.btn:hover{transform:translateY(-3px);border-color:#fff}
+.hero-video{aspect-ratio:9/16;max-height:620px;border-radius:28px;overflow:hidden;background:#151515;border:1px solid #ffffff16;box-shadow:0 30px 100px #000}.hero-video video{width:100%;height:100%;object-fit:cover}
+section{width:min(1250px,calc(100% - 12vw));margin:auto;padding:110px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}.kicker{font-size:12px;letter-spacing:.2em;color:#777;text-transform:uppercase}.section-title{font-size:clamp(45px,7vw,90px);line-height:.9;margin:10px 0 0;letter-spacing:-.055em}.section-desc{max-width:420px;color:#888;line-height:1.6}
+.shorts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}.card{position:relative;background:var(--panel);border:1px solid #ffffff12;border-radius:24px;overflow:hidden;cursor:pointer;transition:transform .35s,border-color .35s}.card:hover{transform:translateY(-8px);border-color:#ffffff38}.short .media{aspect-ratio:9/16}.long .media{aspect-ratio:16/9}.media video{width:100%;height:100%;display:block;object-fit:cover;background:#151515}.overlay{position:absolute;inset:0;background:linear-gradient(transparent 45%,#000d);display:flex;align-items:flex-end;padding:20px;opacity:0;transition:.3s}.card:hover .overlay{opacity:1}.tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#ddd}.title{font-size:20px;font-weight:800;margin-top:5px}
+.selected{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.long{grid-column:span 6}.long:nth-child(3){grid-column:span 7}.long:nth-child(4){grid-column:span 5}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.service{padding:28px;background:var(--bg);min-height:145px}.service b{font-size:17px}.service p{color:#777;font-size:13px;line-height:1.5}
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:10vw;align-items:start}.about h3{font-size:clamp(35px,5vw,65px);line-height:.95;margin:0;letter-spacing:-.04em}.about p{font-size:20px;color:#aaa;line-height:1.7;margin:0}
+.contact{border-top:1px solid var(--line);text-align:center;padding:140px 0}.contact h2{font-size:clamp(55px,10vw,130px);line-height:.82;letter-spacing:-.06em;margin:15px auto 30px;max-width:1000px}.contact p{color:#888}.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}.contact-links a{padding:14px 20px;border:1px solid #333;border-radius:999px}.contact-links a:hover{border-color:#fff}
+footer{border-top:1px solid var(--line);padding:30px 6vw;color:#666;display:flex;justify-content:space-between;font-size:12px}
+.modal{position:fixed;z-index:100;inset:0;background:#000d;backdrop-filter:blur(12px);display:none;place-items:center;padding:25px}.modal.open{display:grid}.modal-box{width:min(1100px,95vw);max-height:90vh;position:relative}.modal video{width:100%;max-height:85vh;background:#000;border-radius:18px}.close{position:absolute;right:0;top:-45px;border:0;background:none;color:#fff;font-size:30px;cursor:pointer}
+.reveal{opacity:0;transform:translateY(30px);transition:.8s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){.links{display:none}.menu{display:block}.nav.open .links{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;padding:18px;background:#101010;border-radius:20px}.hero-grid{grid-template-columns:1fr}.hero-video{width:min(72vw,330px);justify-self:center}.hero h1{font-size:20vw}section{width:min(100% - 36px,700px);padding:80px 0}.section-head{display:block}.shorts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.card{border-radius:14px}.selected{display:block}.long{margin-bottom:12px}.services{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr;gap:30px}.contact{padding:100px 18px}footer{padding:24px 18px;gap:10px;flex-direction:column}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+<a class="logo" href="#home">MAURICIO</a>
+<div class="links">
+<a href="#home">Home</a><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+</div><button class="menu" aria-label="Abrir menú" onclick="nav.classList.toggle('open')">☰</button>
+</nav>
+
+<main>
+<header class="hero" id="home">
+<div class="hero-grid">
+<div class="reveal">
+<div class="eyebrow">Freelance Creative</div>
+<h1>MAURICIO</h1><h2>VIDEO EDITOR</h2>
+<p>Transformo ideas en videos que capturan la atención.</p>
+<div class="actions"><a class="btn" href="#work">VER MI TRABAJO</a><a class="btn secondary" href="#contact">CONTACTARME</a></div>
+</div>
+<div class="hero-video reveal"><video src="videos/0001.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+</div>
+</header>
+
+<section id="work" class="reveal">
+<div class="section-head"><div><div class="kicker">01 / Short-form</div><h2 class="section-title">SHORTS</h2></div><p class="section-desc">Edición vertical para TikTok, YouTube Shorts, Instagram Reels y contenido social.</p></div>
+<div class="shorts">
+<div class="card short" data-video="videos/0001.mp4"><div class="media"><video src="videos/0001.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">0001 · Vertical</div><div class="title">Short-form</div></div></div></div>
+<div class="card short" data-video="videos/0002.mp4"><div class="media"><video src="videos/0002.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">0002 · Vertical</div><div class="title">Short-form</div></div></div></div>
+<div class="card short" data-video="videos/0003.mp4"><div class="media"><video src="videos/0003.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">0003 · Vertical</div><div class="title">Short-form</div></div></div></div>
+</div>
+</section>
+
+<section class="reveal">
+<div class="section-head"><div><div class="kicker">02 / Selected work</div><h2 class="section-title">WORK</h2></div><p class="section-desc">Una selección de trabajos en formato horizontal. Los videos mantienen su proporción 16:9.</p></div>
+<div class="selected">
+<div class="card long" data-video="videos/1000.mp4"><div class="media"><video src="videos/1000.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">1000 · 16:9</div><div class="title">Selected Work</div></div></div></div>
+<div class="card long" data-video="videos/2000.mp4"><div class="media"><video src="videos/2000.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">2000 · 16:9</div><div class="title">Selected Work</div></div></div></div>
+<div class="card long" data-video="videos/3000.mp4"><div class="media"><video src="videos/3000.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">3000 · 16:9</div><div class="title">Selected Work</div></div></div></div>
+<div class="card long" data-video="videos/4000.mp4"><div class="media"><video src="videos/4000.mp4" muted loop playsinline preload="metadata"></video></div><div class="overlay"><div><div class="tag">4000 · 16:9</div><div class="title">Selected Work</div></div></div></div>
+</div>
+</section>
+
+<section id="services" class="reveal">
+<div class="section-head"><div><div class="kicker">03 / Capabilities</div><h2 class="section-title">SERVICES</h2></div></div>
+<div class="services">
+<div class="service"><b>Video Editing</b><p>Edición audiovisual para distintos formatos.</p></div><div class="service"><b>Social Media</b><p>TikTok, Reels, Shorts y contenido vertical.</p></div><div class="service"><b>YouTube</b><p>Contenido de formato largo y dinámico.</p></div><div class="service"><b>Gaming</b><p>Gameplays, highlights y contenido gaming.</p></div>
+<div class="service"><b>Vlog Editing</b><p>Edición dinámica para creadores.</p></div><div class="service"><b>Anime Recaps</b><p>Resúmenes y contenido relacionado con anime.</p></div><div class="service"><b>Documentary</b><p>Edición narrativa y audiovisual.</p></div><div class="service"><b>Interviews</b><p>Edición de entrevistas y contenido conversacional.</p></div>
+<div class="service"><b>Motion Graphics</b><p>Elementos gráficos para reforzar el contenido.</p></div><div class="service"><b>Color Correction</b><p>Corrección visual y consistencia de imagen.</p></div><div class="service"><b>Subtitles</b><p>Subtítulos y captions para redes.</p></div><div class="service"><b>Long-form</b><p>Proyectos audiovisuales de mayor duración.</p></div>
+</div>
+</section>
+
+<section id="about" class="about reveal">
+<div><div class="kicker">04 / About</div><h3>EDICIÓN CON<br>INTENCIÓN.</h3></div>
+<p>Soy Mauricio, Video Editor enfocado en transformar material audiovisual en contenido atractivo, dinámico y profesional. Trabajo con contenido para redes sociales, YouTube y diferentes formatos audiovisuales.</p>
+</section>
+
+<section id="contact" class="contact reveal">
+<div class="kicker">05 / Contact</div><h2>¿Tienes un proyecto<br>en mente?</h2><p>Hagámoslo realidad.</p>
+<div class="contact-links">
+<a href="mailto:mauricioeditordevideo@gmail.com">ENVIAR EMAIL</a>
+<a href="https://wa.me/50375016868" target="_blank" rel="noopener">WHATSAPP</a>
+</div>
+</section>
+</main>
+
+<footer><span>© 2026 MAURICIO — VIDEO EDITOR</span><span>Creative Portfolio</span></footer>
+
+<div class="modal" id="modal"><div class="modal-box"><button class="close" aria-label="Cerrar">×</button><video id="modalVideo" controls playsinline></video></div></div>
+
+<script>
+const nav=document.getElementById('nav'), modal=document.getElementById('modal'), mv=document.getElementById('modalVideo');
+document.querySelectorAll('.card').forEach(card=>{
+ const v=card.querySelector('video');
+ card.addEventListener('mouseenter',()=>v.play().catch(()=>{}));
+ card.addEventListener('mouseleave',()=>{v.pause();v.currentTime=0});
+ card.addEventListener('click',()=>{mv.src=card.dataset.video;modal.classList.add('open');mv.play().catch(()=>{})});
+});
+document.querySelector('.close').onclick=()=>{modal.classList.remove('open');mv.pause();mv.removeAttribute('src');mv.load()};
+modal.addEventListener('click',e=>{if(e.target===modal)document.querySelector('.close').click()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))document.querySelector('.close').click()});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+document.querySelectorAll('.links a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+</script>
+</body>
+</html>
